@@ -40,8 +40,9 @@ bin.average = function (items, maxBinSize, maxBinAmount) {
 
     var successfullyAdded = addToBin (nextItem, lastBin);
     if (successfullyAdded) continue;
-    addBigItem ? items.unshift (nextItem) : items.push (nextItem);
 
+    // If we failed to add an item, the bin is too full. Restore the item to its original position in `items`, add a new bin and keep on going.
+    addBigItem ? items.unshift (nextItem) : items.push (nextItem);
     bins.push ([]);
   }
 
